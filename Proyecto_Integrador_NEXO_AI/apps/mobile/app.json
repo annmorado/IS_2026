@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "NEXO AI",
+    "slug": "nexo-ai",
+    "scheme": "nexoai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "NEXO AI solicita el microfono para grabar notas de voz de pedidos."
+      }
+    },
+    "android": {
+      "package": "com.nexoai.mobile",
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "NEXO AI necesita usar el microfono para registrar notas de voz."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "NEXO AI necesita seleccionar una foto para extraer texto. La imagen no se conserva en el servidor."
+        }
+      ]
+    ]
+  }
+}

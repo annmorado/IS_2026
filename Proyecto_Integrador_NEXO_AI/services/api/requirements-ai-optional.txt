@@ -1,0 +1,7 @@
+# Optional REAL local speech inference (Windows compatible).
+# Pin the upstream faster-whisper commit that fixes PyAV 19 metadata_errors:
+# https://github.com/SYSTRAN/faster-whisper/commit/2ce7f9d7a9fbe315a5804a33bf7224d42e101174
+# Pin PyAV 19.0.2: PyAV 18.1.0 was blocked by Windows App Control on this device.
+# This is an optional dependency file, not part of the core API requirements.
+faster-whisper @ git+https://github.com/SYSTRAN/faster-whisper.git@2ce7f9d7a9fbe315a5804a33bf7224d42e101174
+av==19.0.2

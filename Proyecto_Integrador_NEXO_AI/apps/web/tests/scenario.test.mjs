@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {validateScenarioInput} from '../lib/scenario.mjs';
+import {allowedApiPath} from '../lib/paths.mjs';
+const id='84a50756-c668-43b0-91a8-e40c67f52a9d';
+test('POST scenario payload allowed only expected fields',()=>{const v=validateScenarioInput({order_id:id,product_id:id,quantity:'3.000',unit_price_mxn:'25.50'});assert.equal(v.quantity,'3.000')});
+test('scenario reject foreign tenant or arbitrary writes',()=>{assert.equal(validateScenarioInput({order_id:id,product_id:id,organization_id:id}),null);assert.equal(validateScenarioInput({order_id:id,product_id:id,price_mxn:'9999'}),null)});
+test('scenario rejects path traversal and unsafe numeric formats',()=>{assert.equal(validateScenarioInput({order_id:id,product_id:id,quantity:'Infinity'}),null);assert.equal(validateScenarioInput({order_id:id,product_id:id,quantity:'-1'}),null);assert.equal(validateScenarioInput({order_id:id,product_id:id,quantity:'1e6'}),null)});
+test('scenario resource daily override requires resource id',()=>{assert.equal(validateScenarioInput({order_id:id,product_id:id,resource_daily_capacity:'5.000'}),null)});
+test('GET paths cannot mutate or access simulation endpoint',()=>{assert.equal(allowedApiPath(['simulations','evaluate']),null);assert.equal(allowedApiPath(['products','quotable'],'limit=10'),'products/quotable?limit=10');assert.equal(allowedApiPath(['capacity','resources'],'limit=10'),'capacity/resources?limit=10');});
+test('reject arbitrary query params on catalog read',()=>{assert.equal(allowedApiPath(['products','quotable'],'organization_id=x'),null);assert.equal(allowedApiPath(['capacity','resources'],'include_inactive=true'),null)});

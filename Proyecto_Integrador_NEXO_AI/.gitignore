@@ -1,0 +1,74 @@
+
+# ======================================
+# NEXO AI - GITIGNORE
+# ======================================
+
+# PYTHON
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ENTORNOS VIRTUALES
+.venv/
+venv/
+env/
+ENV/
+
+# NODE / REACT / NEXT.JS
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# REACT NATIVE / EXPO
+.expo/
+.expo-shared/
+web-build/
+android/
+ios/
+
+# VARIABLES DE ENTORNO
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# CREDENCIALES Y CLAVES
+*.pem
+*.p12
+*.pfx
+*.key
+*.keystore
+
+# BASES DE DATOS LOCALES
+*.sqlite
+*.sqlite3
+*.db
+
+# ARCHIVOS TEMPORALES
+*.log
+*.tmp
+*.bak
+
+# SISTEMA OPERATIVO
+.DS_Store
+Thumbs.db
+
+# EDITORES
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Audios privados RF-009
+/services/api/storage/
